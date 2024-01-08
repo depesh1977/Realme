@@ -119,6 +119,7 @@ TW_INCLUDE_FBE_METADATA_DECRYPT := false
 
 # Properties
 TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 
 # Use mke2fs to create ext4 images
 TARGET_USES_MKE2FS := true
@@ -133,7 +134,7 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
 TW_INCLUDE_NTFS_3G := true
 RECOVERY_SDCARD_ON_DATA := true
-TW_BRIGHTNESS_PATH := "/sys/devices/platform/sprd_backlight/backlight/sprd_backlight/brightness"
+TW_BRIGHTNESS_PATH := "/sys/devices/platform/soc/soc:mm/63100000.dsi/63100000.dsi.0/display/panel0/sprd_backlight/brightness"
 TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 190
 TW_BACKUP_EXCLUSIONS := /data/fonts
@@ -143,7 +144,7 @@ TW_EXCLUDE_APEX := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_NO_SCREEN_BLANK := true
 #TW_NO_USB_STORAGE := true
-#TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
+TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_DEVICE_VERSION := Realme C11 2021
 #TW_INCLUDE_FASTBOOTD := true
 TW_INCLUDE_RESETPROP := true
