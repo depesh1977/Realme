@@ -19,7 +19,7 @@ package {
 }
 
 cc_library {
-    name: "bootctrl.unisoc",
+    name: "bootctrl.sp9863a",
     defaults: ["bootctrl_hal_defaults"],
     static_libs: ["libgptutils.RMX3231"],
 }
