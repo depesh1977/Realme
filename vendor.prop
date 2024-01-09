@@ -1,7 +1,0 @@
-# Fastbootd
-ro.fastbootd.available=true
-
-# Retrofit Dynamic Partition
-ro.boot.dynamic_partitions=true
-ro.build.ab_update=true
-ro.virtual_ab.enabled=true
