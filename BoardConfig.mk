@@ -22,7 +22,7 @@ AB_OTA_PARTITIONS += \
     system_ext \
     vendor \
     product
-TARGET_NO_RECOVERY := true
+BOARD_USES_RECOVERY_AS_BOOT := true
 
 # Architecture
 TARGET_ARCH := arm
@@ -33,6 +33,7 @@ TARGET_CPU_VARIANT := generic
 TARGET_CPU_VARIANT_RUNTIME := cortex-a55
 
 TARGET_USES_64_BIT_BINDER := true
+#TARGET_USES_UEFI := true
 
 # APEX
 DEXPREOPT_GENERATE_APEX_IMAGE := true
@@ -40,11 +41,12 @@ DEXPREOPT_GENERATE_APEX_IMAGE := true
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := RMX3231
 TARGET_NO_BOOTLOADER := true
-#TARGET_USES_UEFI := true
 
-# Platform
-TARGET_BOARD := RMX3231
-TARGET_BOARD_PLATFORM := sp9863a
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/twrp.fstab
+
+# Display
+TARGET_SCREEN_DENSITY := 320
 
 # Kernel
 BOARD_BOOTIMG_HEADER_VERSION := 2
@@ -73,26 +75,26 @@ endif
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_SUPER_PARTITION_SIZE := 9126805504 # TODO: Fix hardcoded value
-BOARD_ROOT_EXTRA_SYMLINKS := \
-    /vendor/dsp:/dsp \
-    /vendor/firmware_mnt:/firmware \
-    /vendor/bt_firmware:/bt_firmware \
-    /mnt/vendor/persist:/persist
 BOARD_SUPER_PARTITION_SIZE := 9126805504
 BOARD_SUPER_PARTITION_GROUPS := realme_dynamic_partitions
 BOARD_REALME_DYNAMIC_PARTITIONS_PARTITION_LIST := system system_ext vendor product
 BOARD_REALME_DYNAMIC_PARTITIONS_SIZE := 9122611200
 
-# UserIMG
+# Platform
+TARGET_BOARD_PLATFORM := sp9863a
+
+# Recovery
+TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
+
+# Security patch level
+VENDOR_SECURITY_PATCH := 2021-03-05
 
 # AVB
 BOARD_AVB_ENABLE := true
@@ -104,58 +106,12 @@ BOARD_AVB_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX := $(BOARD_AVB_ROLLBACK_INDEX)
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 0
 
-# System as root
-BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
-BOARD_USES_RECOVERY_AS_BOOT := true
-
-# Use mke2fs to create ext4 images
-TARGET_USES_MKE2FS := true
-
-# Workaround for copying error vendor files to recovery ramdisk
-TARGET_COPY_OUT_PRODUCT := product
-TARGET_COPY_OUT_VENDOR := vendor
-TARGET_COPY_OUT_SYSTEM_EXT = system_ext
-
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 16.1.0
 
-# Decryption
-TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_CRYPTO_FBE := true
-TW_INCLUDE_FBE_METADATA_DECRYPT := true
-BOARD_USES_METADATA_PARTITION := true
-BOARD_USES_QCOM_FBE_DECRYPTION := true
-TW_USE_FSCRYPT_POLICY := 1
-
-# Properties
-TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/twrp.fstab
-
-BOARD_USES_METADATA_PARTITION := true
-
-# Partitions (listed in the file) to be wiped under recovery.
-TARGET_RECOVERY_WIPE := $(DEVICE_PATH)/recovery/root/system/etc/recovery.wipe
-
-# Properties
-TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
-TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
-
-# Use mke2fs to create ext4 images
-TARGET_USES_MKE2FS := true
-
-# Recovery
-TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
-TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
-
-# Display
-TARGET_SCREEN_DENSITY := 320
-
 # TWRP Configuration
-TW_BRIGHTNESS_PATH := "/sys/devices/platform/soc/soc:mm/63100000.dsi/63100000.dsi.0/display/panel0/sprd_backlight/brightness"
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
 TW_SCREEN_BLANK_ON_BOOT := true
@@ -163,10 +119,11 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
 TW_INCLUDE_REPACKTOOLS := true
 TW_INCLUDE_FASTBOOTD := true
-RECOVERY_SDCARD_ON_DATA := true
-TW_OVERRIDE_SYSTEM_PROPS := \
 
 # Debugging
 TWRP_EVENT_LOGGING := true
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
+
+# Partitions (listed in the file) to be wiped under recovery.
+TARGET_RECOVERY_WIPE := $(DEVICE_PATH)/recovery/root/system/etc/recovery.wipe
