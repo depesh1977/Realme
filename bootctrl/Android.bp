@@ -21,5 +21,5 @@ package {
 cc_library {
     name: "bootctrl.unisoc",
     defaults: ["bootctrl_hal_defaults"],
-    static_libs: ["libgptutils.java"],
+    static_libs: ["libgptutils.RMX3231"],
 }
