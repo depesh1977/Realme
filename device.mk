@@ -29,6 +29,10 @@ PRODUCT_PACKAGES += \
     android.hardware.health@2.1-service
 
 PRODUCT_PACKAGES += \
+    bootctrl.unisoc \
+    bootctrl.unisoc.recovery
+
+PRODUCT_PACKAGES += \
     otapreopt_script \
     cppreopts.sh \
     update_engine \
