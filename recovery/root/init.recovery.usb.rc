@@ -1,0 +1,116 @@
+    # Add standard gadget entries
+    mount configfs none /config
+    mkdir /config/usb_gadget/g1 0770 shell shell
+    write /config/usb_gadget/g1/idVendor 0x1782
+    write /config/usb_gadget/g1/idProduct 0x4d00
+    mkdir /config/usb_gadget/g1/strings/0x409 0770 shell shell
+    write /config/usb_gadget/g1/strings/0x409/serialnumber ${ro.serialno}
+    write /config/usb_gadget/g1/strings/0x409/manufacturer Unisoc
+    write /config/usb_gadget/g1/strings/0x409/product "Unisoc Phone"
+    mkdir /config/usb_gadget/g1/configs/b.1 0770 shell shell
+    mkdir /config/usb_gadget/g1/configs/b.1/strings/0x409 0770 shell shell
+    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "Conf 1"
+    write /config/usb_gadget/g1/configs/b.1/MaxPower 120
+
+    # Create adb+ffs gadget function
+    mkdir /config/usb_gadget/g1/functions/ffs.adb 0770 shell shell
+    mkdir /config/usb_gadget/g1/functions/ffs.fastboot 0770 shell shell
+    mkdir /dev/usb-ffs 0770 shell shell
+    mkdir /dev/usb-ffs/adb 0770 shell shell
+    mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
+    mkdir /dev/usb-ffs/fastboot 0770 system system
+    mount functionfs fastboot /dev/usb-ffs/fastboot rmode=0770,fmode=0660,uid=1000,gid=1000
+
+    # Create MTP and PTP functions
+    mkdir /config/usb_gadget/g1/functions/mtp.gs0 0770 shell shell
+    mkdir /config/usb_gadget/g1/functions/ptp.gs1 0770 shell shell
+    mkdir /config/usb_gadget/g1/functions/rndis.gs4 0770 shell shell
+    mkdir /config/usb_gadget/g1/functions/vser.gs7 0770 shell shell
+    mkdir /config/usb_gadget/g1/functions/accessory.gs2 0770 shell shell
+    mkdir /config/usb_gadget/g1/functions/audio_source.gs3 0770 shell shell
+    mkdir /config/usb_gadget/g1/functions/midi.gs5 0770 shell shell
+    mkdir /config/usb_gadget/g1/functions/gser.gs0 0770 shell shell
+    mkdir /config/usb_gadget/g1/functions/gser.gs1 0770 shell shell
+    mkdir /config/usb_gadget/g1/functions/gser.gs2 0770 shell shell
+    mkdir /config/usb_gadget/g1/functions/gser.gs3 0770 shell shell
+    mkdir /config/usb_gadget/g1/functions/gser.gs4 0770 shell shell
+    mkdir /config/usb_gadget/g1/functions/gser.gs5 0770 shell shell
+    mkdir /config/usb_gadget/g1/functions/gser.gs6 0770 shell shell
+    mkdir /config/usb_gadget/g1/functions/gser.gs7 0770 shell shell
+
+on property:sys.usb.configfs=1 && property:sys.usb.ffs.ready=1 && property:sys.usb.config=adb,vser,gser
+    write /config/usb_gadget/g1/idVendor 0x1782
+    write /config/usb_gadget/g1/idProduct 0x5d06
+    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "adb_vser_gser"
+    rm /config/usb_gadget/g1/configs/b.1/f1
+    rm /config/usb_gadget/g1/configs/b.1/f2
+    rm /config/usb_gadget/g1/configs/b.1/f3
+    rm /config/usb_gadget/g1/configs/b.1/f4
+    rm /config/usb_gadget/g1/configs/b.1/f5
+    rm /config/usb_gadget/g1/configs/b.1/f6
+    rm /config/usb_gadget/g1/configs/b.1/f7
+    rm /config/usb_gadget/g1/configs/b.1/f8
+    rm /config/usb_gadget/g1/configs/b.1/f9
+    rm /config/usb_gadget/g1/configs/b.1/f10
+    rm /config/usb_gadget/g1/configs/b.1/f11
+
+    symlink /config/usb_gadget/g1/functions/ffs.adb  /config/usb_gadget/g1/configs/b.1/f1
+    symlink /config/usb_gadget/g1/functions/vser.gs7 /config/usb_gadget/g1/configs/b.1/f2
+    symlink /config/usb_gadget/g1/functions/gser.gs0 /config/usb_gadget/g1/configs/b.1/f3
+
+    write /config/usb_gadget/g1/UDC ${sys.usb.controller}
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.configfs=1 && property:sys.usb.config=vser
+    write /config/usb_gadget/g1/idVendor 0x1782
+    write /config/usb_gadget/g1/idProduct 0x4d00
+    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "vser"
+    rm /config/usb_gadget/g1/configs/b.1/f1
+    rm /config/usb_gadget/g1/configs/b.1/f2
+    rm /config/usb_gadget/g1/configs/b.1/f3
+    rm /config/usb_gadget/g1/configs/b.1/f4
+    rm /config/usb_gadget/g1/configs/b.1/f5
+    rm /config/usb_gadget/g1/configs/b.1/f6
+    rm /config/usb_gadget/g1/configs/b.1/f7
+    rm /config/usb_gadget/g1/configs/b.1/f8
+    rm /config/usb_gadget/g1/configs/b.1/f9
+    rm /config/usb_gadget/g1/configs/b.1/f10
+    rm /config/usb_gadget/g1/configs/b.1/f11
+
+    symlink /config/usb_gadget/g1/functions/vser.gs7 /config/usb_gadget/g1/configs/b.1/f1
+
+    write /config/usb_gadget/g1/UDC ${sys.usb.controller}
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=mtp
+    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "mtp"
+    rm /config/usb_gadget/g1/configs/b.1/f1
+    rm /config/usb_gadget/g1/configs/b.1/f2
+    rm /config/usb_gadget/g1/configs/b.1/f3
+    rm /config/usb_gadget/g1/configs/b.1/f4
+    rm /config/usb_gadget/g1/configs/b.1/f5
+    write /config/usb_gadget/g1/idVendor 0x18d1
+    write /config/usb_gadget/g1/idProduct 0xd001
+    symlink /config/usb_gadget/g1/functions/mtp.gs0 /config/usb_gadget/g1/configs/b.1/f1
+    write /config/usb_gadget/g1/UDC ${sys.usb.controller}
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=mtp,adb
+    start adbd
+
+on property:sys.usb.ffs.ready=1 && property:sys.usb.config=mtp,adb
+    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "mtp_adb"
+    rm /config/usb_gadget/g1/configs/b.1/f1
+    rm /config/usb_gadget/g1/configs/b.1/f2
+    rm /config/usb_gadget/g1/configs/b.1/f3
+    rm /config/usb_gadget/g1/configs/b.1/f4
+    rm /config/usb_gadget/g1/configs/b.1/f5
+    write /config/usb_gadget/g1/idVendor 0x18d1
+    write /config/usb_gadget/g1/idProduct 0xd001
+    symlink /config/usb_gadget/g1/functions/mtp.gs0 /config/usb_gadget/g1/configs/b.1/f1
+    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f2
+    write /config/usb_gadget/g1/UDC ${sys.usb.controller}
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:ro.boot.usbcontroller=*
+setprop sys.usb.controller ${ro.boot.usbcontroller}
