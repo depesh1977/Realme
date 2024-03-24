@@ -1,5 +1,7 @@
 # Dynamic partitions
+# <mount_point>        <fstype>       <device>              <device2>                                  <flags>
 /system                 ext4    /dev/block/mapper/system_a            		flags=backup=1;wipeingui;display="System"
+/system_root             ext4     /dev/block/mapper/system_a               flags=backup=1;wipeingui;display="System"
 /system_ext             ext4	/dev/block/mapper/system_ext_a			    flags=backup=1;wipeingui;display="System_Ext"
 /vendor             	ext4    /dev/block/mapper/vendor_a                  flags=backup=1;wipeingui;display="Vendor"
 /product            	ext4    /dev/block/mapper/product_a           		flags=backup=1;wipeingui;display="Product"
