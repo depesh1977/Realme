@@ -9,7 +9,7 @@
 ALLOW_MISSING_DEPENDENCIES := true
 
 # DEVICE PATH
-TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 DEVICE_PATH := device/realme/RMX3231
 
 # Architecture
