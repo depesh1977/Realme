@@ -1,4 +1,4 @@
-# TWRP device tree for Realme RMX3231 (c11 2121)
+# TWRP device tree for Realme RMX3231 (c11 2021)
 
 ## Device specification
 
