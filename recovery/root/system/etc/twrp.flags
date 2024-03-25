@@ -46,7 +46,7 @@
 /logo                   emmc     /dev/block/by-name/logo                    flags=backup=1;flashimg=1;display="Logo"
 /fbootlogo              emmc     /dev/block/by-name/fbootlogo               flags=backup=1;flashimg=1;display="Fastboot Logo"
 /metadata              	ext4     /dev/block/by-name/metadata              	flags=backup=1;display="Metadata"
-/data                   f2fs     /dev/block/by-name/userdata                flags=encryptable=footer
+/data                   f2fs     /dev/block/by-name/userdata                flags=encryptable=footer;display="Data"
 /socko                 	ext4     /dev/block/by-name/socko                 	flags=backup=1;display="Socko";slotselect
 /socko_image            emmc     /dev/block/by-name/socko_a                 flags=backup=1;flashimg=1;display="Socko Image"
 /odmko                 	ext4     /dev/block/by-name/odmko                 	flags=backup=1;display="Odmko";slotselect
