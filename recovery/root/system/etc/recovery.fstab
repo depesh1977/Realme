@@ -1,5 +1,5 @@
-/dev/block/mmcblk0boot0                                                        /spl                emmc    defaults    slotselect
-/dev/block/mmcblk0boot1                                                        /spl_bk             emmc    defaults    defaults
+/dev/block/mmcblk0boot0                  /spl                emmc    defaults    slotselect
+/dev/block/mmcblk0boot1                  /spl_bk             emmc    defaults    defaults
 /dev/block/by-name/uboot                 /uboot              emmc    defaults    slotselect
 /dev/block/by-name/sml                   /sml                emmc    defaults    slotselect
 /dev/block/by-name/trustos               /tos                emmc    defaults    slotselect
