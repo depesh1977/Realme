@@ -139,7 +139,7 @@ TW_HAS_NO_RECOVERY_PARTITION := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 #TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/twrp.flags
 TW_BRIGHTNESS_PATH := "/sys/devices/platform/sprd_backlight/backlight/sprd_backlight/brightness"
-TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
+#TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TW_EXTRA_LANGUAGES := true
 TW_THEME := portrait_hdpi
@@ -148,14 +148,14 @@ TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 190
 RECOVERY_SDCARD_ON_DATA := true
 TW_USE_TOOLBOX := true
-TW_SCREEN_BLANK_ON_BOOT := true
-TW_MTP_DEVICE := /dev/mtp_usb
+#TW_SCREEN_BLANK_ON_BOOT := true
+#TW_MTP_DEVICE := /dev/mtp_usb
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_DEVICE_VERSION := RMX3231 by depesh1977
 
 # Fix reboot to system
 TW_NO_FASTBOOT_BOOT := true
-#GENERIC_KERNEL_CMDLINE += twrpfastboot=1
+GENERIC_KERNEL_CMDLINE += twrpfastboot=1
 
 # Kernel module loading
 TW_LOAD_VENDOR_MODULES := "incrementalfs.ko kheaders.ko trace_irqsoff_bytedancy.ko trace_noschedule_bytedancy.ko trace_runqlat_bytedancy.ko"
