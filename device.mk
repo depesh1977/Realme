@@ -40,6 +40,9 @@ PRODUCT_PACKAGES += \
     bootctrl.$(PRODUCT_PLATFORM) \
     bootctrl.$(PRODUCT_PLATFORM).recovery
 
+PRODUCT_PACKAGES_DEBUG += \
+    bootctrl
+
 PRODUCT_PACKAGES += \
 otapreopt_script \
 cppreopts.sh \
