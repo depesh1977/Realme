@@ -127,7 +127,7 @@ BOARD_USES_RECOVERY_AS_BOOT := true
 TARGET_NO_RECOVERY := true
 TW_HAS_NO_RECOVERY_PARTITION := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/twrp.flags
+#TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/twrp.flags
 TW_BRIGHTNESS_PATH := "/sys/devices/platform/sprd_backlight/backlight/sprd_backlight/brightness"
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 TW_EXTRA_LANGUAGES := true
@@ -144,7 +144,7 @@ TW_DEVICE_VERSION := RMX3231 by depesh1977
 
 # Fix reboot to system
 TW_NO_FASTBOOT_BOOT := true
-GENERIC_KERNEL_CMDLINE += twrpfastboot=1
+#GENERIC_KERNEL_CMDLINE += twrpfastboot=1
 
 # Kernel module loading
 TW_LOAD_VENDOR_MODULES := "incrementalfs.ko kheaders.ko trace_irqsoff_bytedancy.ko trace_noschedule_bytedancy.ko trace_runqlat_bytedancy.ko"
