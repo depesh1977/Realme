@@ -143,6 +143,10 @@ TW_MTP_DEVICE := /dev/mtp_usb
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_DEVICE_VERSION := RMX3231 by depesh1977
 
+# Fix reboot to system
+TW_NO_FASTBOOT_BOOT := true
+GENERIC_KERNEL_CMDLINE += twrpfastboot=1
+
 # Debugging
 TWRP_EVENT_LOGGING := true
 TWRP_INCLUDE_LOGCAT := true
