@@ -157,7 +157,7 @@ TW_NO_FASTBOOT_BOOT := true
 GENERIC_KERNEL_CMDLINE += twrpfastboot=1
 
 # Kernel module loading
-#TW_LOAD_VENDOR_MODULES := "incrementalfs.ko kheaders.ko trace_irqsoff_bytedancy.ko trace_noschedule_bytedancy.ko trace_runqlat_bytedancy.ko"
+TW_LOAD_VENDOR_MODULES := "incrementalfs.ko kheaders.ko trace_irqsoff_bytedancy.ko trace_noschedule_bytedancy.ko trace_runqlat_bytedancy.ko"
 
 # Debugging
 TWRP_EVENT_LOGGING := true
