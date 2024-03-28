@@ -2,10 +2,6 @@
 ## Please include it in /init.recovery.${ro.hardware}.rc
 #
 
-on init
-    mount cgroup none /acct cpuacct
-    mkdir /acct/uid
-
 service healthd /system/bin/healthd -r
     critical
     seclabel u:r:healthd:s0
