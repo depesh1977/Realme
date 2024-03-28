@@ -2,10 +2,6 @@
 ## Please include it in /init.recovery.${ro.hardware}.rc
 #
 
-on init
-    mount cgroup none /acct cpuacct
-    mkdir /acct/uid
-
 service healthd /system/bin/healthd -r
     critical
     seclabel u:r:healthd:s0
@@ -71,11 +67,6 @@ service engpcclient /vendor/bin/engpc
     user root
     group root sdcard_rw system radio shell net_bt_admin input audio
 
-service gpsd /vendor/bin/gpsd
-    class core
-    user system
-    group gps system shell inet net_raw wifi
-
 on init
     # Apply strict SELinux checking of PROT_EXEC on mmap/mprotect calls.
     write /sys/fs/selinux/checkreqprot 0
@@ -90,75 +81,30 @@ on init
     chmod 660 /sys/bus/iio/devices/iio:device1/buffer/enable
     chmod 660 /sys/bus/iio/devices/iio:device1/trigger/current_trigger
 
-    export PATH /sbin:/system/bin:/vendor/bin
-    export SECONDARY_STORAGE /storage/sdcard0
+    export PATH /sbin:/system/bin:/system/xbin:/system_ext/bin:/vendor/bin:/vendor/xbin
+    export SECONDARY_STORAGE /external_sd
 
     mkdir /storage
-    mkdir /storage/sdcard1
-    mkdir /storage/sdcard0
-    symlink /storage/sdcard0 /mnt/sdcard
-    symlink /system/etc/bluetooth /etc/bluetooth
+    symlink /external_sd /storage/sdcard0
+    symlink /external_sd /mnt/sdcard
 
     mkdir /systeminfo 0777 system system
 
     loglevel 7
 
     chown system root /proc/mdbg/assert
-    chown system root /proc/mdbg/wdtirq
     chown system root /proc/mdbg/at_cmd
     chown system root /proc/mdbg/loopcheck
 
     chmod 760 /proc/mdbg/assert
-    chmod 760 /proc/mdbg/wdtirq
     chmod 760 /proc/mdbg/at_cmd
     chmod 760 /proc/mdbg/loopcheck
 
-    chown system root /proc/cpwcn/wdtirq
-    chmod 766 /proc/cpwcn/wdtirq
-
-    # Create mount-point for ConfigFS USB gadgets
-    # Add standard gadget entries
-    mount configfs none /config
-    mkdir /config/usb_gadget/g1 0770 shell shell
-    write /config/usb_gadget/g1/idVendor 0x1782
-    write /config/usb_gadget/g1/idProduct 0x4d00
-    mkdir /config/usb_gadget/g1/strings/0x409 0770 shell shell
-    write /config/usb_gadget/g1/strings/0x409/serialnumber ${ro.serialno}
-    write /config/usb_gadget/g1/strings/0x409/manufacturer Unisoc
-    write /config/usb_gadget/g1/strings/0x409/product "Unisoc Phone"
-    mkdir /config/usb_gadget/g1/configs/b.1 0770 shell shell
-    mkdir /config/usb_gadget/g1/configs/b.1/strings/0x409 0770 shell shell
-    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "Conf 1"
-    write /config/usb_gadget/g1/configs/b.1/MaxPower 120
-
-    # Create adb+ffs gadget function
-    mkdir /config/usb_gadget/g1/functions/ffs.adb 0770 shell shell
-    mkdir /config/usb_gadget/g1/functions/ffs.fastboot 0770 shell shell
-    mkdir /dev/usb-ffs 0770 shell shell
-    mkdir /dev/usb-ffs/adb 0770 shell shell
-    mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
-    mkdir /dev/usb-ffs/fastboot 0770 system system
-    mount functionfs fastboot /dev/usb-ffs/fastboot rmode=0770,fmode=0660,uid=1000,gid=1000
-
-    # Create MTP and PTP functions
-    mkdir /config/usb_gadget/g1/functions/mtp.gs0 0770 shell shell
-    mkdir /config/usb_gadget/g1/functions/ptp.gs1 0770 shell shell
-    mkdir /config/usb_gadget/g1/functions/rndis.gs4 0770 shell shell
-    mkdir /config/usb_gadget/g1/functions/vser.gs7 0770 shell shell
-    mkdir /config/usb_gadget/g1/functions/accessory.gs2 0770 shell shell
-    mkdir /config/usb_gadget/g1/functions/audio_source.gs3 0770 shell shell
-    mkdir /config/usb_gadget/g1/functions/midi.gs5 0770 shell shell
-    mkdir /config/usb_gadget/g1/functions/gser.gs0 0770 shell shell
-    mkdir /config/usb_gadget/g1/functions/gser.gs1 0770 shell shell
-    mkdir /config/usb_gadget/g1/functions/gser.gs2 0770 shell shell
-    mkdir /config/usb_gadget/g1/functions/gser.gs3 0770 shell shell
-    mkdir /config/usb_gadget/g1/functions/gser.gs4 0770 shell shell
-    mkdir /config/usb_gadget/g1/functions/gser.gs5 0770 shell shell
-    mkdir /config/usb_gadget/g1/functions/gser.gs6 0770 shell shell
-    mkdir /config/usb_gadget/g1/functions/gser.gs7 0770 shell shell
-
 on boot
-    setprop sys.usb.configfs 1
+    start boot-hal-1-1
+    start health-hal-2-1
+    start charger
+
     write /sys/block/mmcblk0boot0/force_ro 0
     write /sys/block/mmcblk0boot1/force_ro 0
 
@@ -193,10 +139,6 @@ on boot
     chmod 660 /sys/class/power_supply/battery/input_current_limit
     chmod 660 /sys/class/power_supply/battery/constant_charge_current
 
-on fs
-    #mkdir /data/misc/bluedroid 0770 bluetooth net_bt_stack
-    mkdir /data/misc/bluetooth 0770 system system
-
 on post-fs-data
     # We chown/chmod /data again so because mount is run as root + defaults
     chown system system /data
@@ -204,11 +146,6 @@ on post-fs-data
     # We restorecon /data in case the userdata partition has been reset.
     restorecon /data
     mkdir /data/misc 01771 system misc
-    #mkdir /data/misc/bluedroid 0770 bluetooth net_bt_stack
-    mkdir /data/misc/bluetooth 0770 system system
-    copy /system/etc/bluetooth/bt_stack.conf /data/misc/bluedroid/bt_stack.conf
-    chown bluetooth system /data/misc/bluedroid/bt_stack.conf
-    chmod 0640 /data/misc/bluedroid/bt_stack.conf
 
     chmod 666 /sys/module/shub_core/parameters/gryo_firms
     chmod 666 /sys/module/shub_core/parameters/acc_firms
@@ -218,37 +155,7 @@ on post-fs-data
     chmod 666 /sys/module/shub_core/parameters/prox_firms
     chmod 666 /sys/module/firmware_class/parameters/path
     chmod 666 /sys/module/shub_core/parameters/sensor_fusion_mode
-
-    #add wifi
-    mkdir /data/vendor/wifi 0770 wifi wifi
-    mkdir /data/vendor/wifi/wpa 0770 wifi wifi
-    mkdir /data/vendor/wifi/wpa/sockets 0770 wifi wifi
-    mkdir /data/system 0770 system system
-    mkdir /etc/wifi 0770 wifi wifi
-    write /data/vendor/wifi/fwpath sta_mode
-    chmod 660 /data/vendor/wifi/fwpath
-    chown wifi wifi /data/vendor/wifi/fwpath
-    rmdir /data/system/wpa_supplicant
-    mkdir /data/misc/dhcp 0770 dhcp dhcp
-
-    #to observe dnsmasq.leases file for dhcp information
-    chown dhcp system /data/misc/dhcp
-    setprop wifi.interface wlan0
-    mkdir /data/misc/dhcp6c 0770 dhcp dhcp
-    chown dhcp system /data/misc/dhcp6c
-
-    # Ylog dir on /data partition
-    mkdir /data/vendor 0751 root root
-    mkdir /data/vendor/local 0751 root root
-
-    # slogmodem config dir
-    mkdir /data/vendor/ylog 0770 shell system
-    mkdir /data/vendor/local/slogmodem 0770 shell system
-    mkdir /data/vendor/local/mlogservice 0770 shell system
-    mkdir /mnt/vendor/sensorhub 0777 system root
-    mkdir /mnt/vendor/productinfo 0771 system root
-    mkdir /mnt/vendor/productinfo/sensor_calibration_data 0770 system root
-    mkdir /data/vendor/local/otpdata 0777 system root
+    start hwservicemanager
 
 on property:ro.debuggable=1
     write /sys/module/smsg/parameters/debug_enable 1
@@ -309,7 +216,6 @@ on property:ro.bootmode=cali
     mount_all /etc/recovery.tmpfsdata.fstab
     mount tmpfs tmpfs /data mode=0777
     mkdir /system 0755 root root
-    symlink /system_root/system /system
     chown system system /data
     trigger post-fs
     trigger post-fs-data
@@ -326,40 +232,8 @@ on property:ro.bootmode=cali
     mkdir /data/sprd_ss 0770 system system
     class_start cali
 
-    # ToDo: insmod .../${ro.gpu.name}.ko
-    insmod /mnt/product/socko/pvrsrvkm.ko
-    insmod /mnt/product/socko/mali_gondul.ko
-
-    #gnss libgps
-    mkdir /data/vendor/gnss/ 0777 system system
-    mkdir /data/vendor/gnss/bin/ 0777 system system
-    mkdir /data/vendor/gnss/supl/ 0777 system system
-    mkdir /data/vendor/gnss/config/ 0777 system system
-    mkdir /data/vendor/gnss/lte/ 0777 system system
-    chown system system /data/vendor/gnss/bin/gnssmodem.bin
-    chown system system /data/vendor/gnss/config/config.xml
-    chown system system /data/vendor/gnss/supl/supl.xml
-    chown system system /data/vendor/gnss/supl/spirentroot.cer
-    chown system system /data/vendor/gnss/lte/ext.eph
-    chown system system /data/vendor/gnss/lte/jpleph.405
-    chown system system /data/vendor/gnss/lte/raw.obs
-    chown system system /data/vendor/gnss/gnss.log
-    chown system system /data/vendor/gnss/nmea.log
-    chown system system /mnt/vendor/tsx.dat
-    chown system system /mnt/vendor/txdata.txt
-    chown system system /data/vendor/gnss/FlashCfg.cg
-    chmod 666 /data/vendor/gnss/bin/gnssmodem.bin
-    chmod 666 /data/vendor/gnss/config/config.xml
-    chmod 660 /data/vendor/gnss/supl/supl.xml
-    chmod 660 /data/vendor/gnss/supl/spirentroot.cer
-    chmod 666 /data/vendor/gnss/lte/ext.eph
-    chmod 666 /data/vendor/gnss/lte/jpleph.405
-    chmod 660 /data/vendor/gnss/lte/raw.obs
-    chmod 666 /data/vendor/gnss/gnss.log
-    chmod 666 /data/vendor/gnss/nmea.log
     chmod 666 /mnt/vendor/tsx.dat
     chmod 666 /mnt/vendor/txdata.txt
-    chmod 666 /data/vendor/gnss/FlashCfg.cg
 
     start hwservicemanager
     start vendor.slogmodem
@@ -395,49 +269,8 @@ on property:ro.bootmode=factorytest
     mkdir /data/vendor/local 0751 root root
     mkdir /data/vendor/local/media 0770 audioserver system
 
-    # ToDo: insmod .../${ro.gpu.name}.ko
-    insmod /mnt/product/socko/pvrsrvkm.ko
-    insmod /mnt/product/socko/mali_gondul.ko
-
-    #gnss
-    mkdir /data/vendor/gnss/ 0777 system system
-    mkdir /data/vendor/gnss/bin/ 0777 system system
-    mkdir /data/vendor/gnss/supl/ 0777 system system
-    mkdir /data/vendor/gnss/config/ 0777 system system
-    mkdir /data/vendor/gnss/lte/ 0777 system system
-    chown system system /data/vendor/gnss/bin/gnssmodem.bin
-    chown system system /data/vendor/gnss/config/config.xml
-    chown system system /data/vendor/gnss/supl/supl.xml
-    chown system system /data/vendor/gnss/supl/spirentroot.cer
-    chown system system /data/vendor/gnss/lte/ext.eph
-    chown system system /data/vendor/gnss/lte/jpleph.405
-    chown system system /data/vendor/gnss/lte/raw.obs
-    chown system system /data/vendor/gnss/gnss.log
-    chown system system /data/vendor/gnss/nmea.log
-    chown system system /mnt/vendor/tsx.dat
-    chown system system /mnt/vendor/txdata.txt
-    chown system system /data/vendor/gnss/FlashCfg.cg
-    chmod 666 /data/vendor/gnss/bin/gnssmodem.bin
-    chmod 666 /data/vendor/gnss/config/config.xml
-    chmod 660 /data/vendor/gnss/supl/supl.xml
-    chmod 660 /data/vendor/gnss/supl/spirentroot.cer
-    chmod 666 /data/vendor/gnss/lte/ext.eph
-    chmod 666 /data/vendor/gnss/lte/jpleph.405
-    chmod 660 /data/vendor/gnss/lte/raw.obs
-    chmod 666 /data/vendor/gnss/gnss.log
-    chmod 666 /data/vendor/gnss/nmea.log
     chmod 666 /mnt/vendor/tsx.dat
     chmod 666 /mnt/vendor/txdata.txt
-    chmod 666 /data/vendor/gnss/FlashCfg.cg
-
-    chown system system /sys/class/misc/gnss_common_ctl/gnss_power_enable
-    chown system system /sys/class/misc/gnss_common_ctl/gnss_dump
-    chown system system /sys/class/misc/gnss_common_ctl/gnss_subsys
-    chown system system /dev/gnss_pmnotify_ctl
-    chmod  220 /sys/class/misc/gnss_common_ctl/gnss_power_enable
-    chmod 660 /sys/class/misc/gnss_common_ctl/gnss_dump
-    chmod 660 /sys/class/misc/gnss_common_ctl/gnss_subsys
-    chmod 660  /dev/gnss_pmnotify_ctl
 
     mkdir /data/misc 01771 system misc
     start vendor.cp_diskserver
