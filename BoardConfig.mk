@@ -141,7 +141,6 @@ BOARD_USES_RECOVERY_AS_BOOT := true
 TARGET_NO_RECOVERY := true
 TW_HAS_NO_RECOVERY_PARTITION := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/twrp.flags
 TW_BRIGHTNESS_PATH := "/sys/devices/platform/soc/soc:mm/63100000.dsi/63100000.dsi.0/display/panel0/sprd_backlight/brightness"
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
