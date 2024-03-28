@@ -1,11 +1,27 @@
-# Virtual AB
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+#
+# Copyright (C) 2023 The Android Open Source Project
+# Copyright (C) 2023 SebaUbuntu's TWRP device tree generator
+#
+# SPDX-License-Identifier: Apache-2.0
+#
 
-# API level
+LOCAL_PATH := device/realme/RMX3231
+
+PRODUCT_PLATFORM := SC9863A
+
+# Dynamic Partitions stuff
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
+# VNDK
+PRODUCT_TARGET_VNDK_VERSION := 30
+
+# API
 PRODUCT_SHIPPING_API_LEVEL := 30
 
-# Dynamic partitions
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
+# Virtual A/B
+ENABLE_VIRTUAL_AB := true
+
+PRODUCT_PROPERTY_OVERRIDES += ro.apex.updatable=false
 
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
