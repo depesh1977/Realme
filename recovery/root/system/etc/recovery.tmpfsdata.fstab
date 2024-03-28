@@ -31,6 +31,6 @@
 
 /dev/block/by-name/system                /system_root        ext4    ro,barrier=1    wait,slotselect
 /dev/block/by-name/vendor                /vendor             ext4    ro,barrier=1    wait,slotselect
-/dev/block/by-name/prodnv                /mnt/vendor         ext4    noatime,nosuid,nodev,nomblk_io_submit,noauto_da_alloc     wait,check
+/dev/block/by-name/prodnv                /mnt/vendor         ext4    noatime,nosuid,nodev,noauto_da_alloc     wait,check
 
 /dev/block/mmcblk1p1                     /storage/sdcard0    vfat    defaults    defaults
