@@ -9,15 +9,31 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
+    uboot \
+    sml \
+    trustos \
+    teecfg \
     vbmeta \
     vbmeta_system \
     vbmeta_vendor \
+    vbmeta_product \
+    vbmeta_system_ext \
     dtbo \
+    l_ldsp \
+    l_gdsp \
+    l_modem \
+    l_deltanv \
+    wcnmodem \
+    gpsgl \
+    gpsbd \
+    pm_sys \
     boot \
     system \
     system_ext \
     vendor \
-    product
+    product \
+    socko \
+    odmko
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -25,11 +41,10 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
-#PACKAGES
+# Health Hal
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-service \
-    libhealthd.$(PRODUCT_PLATFORM)
+    android.hardware.health@2.1-service
 
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.1-impl \
@@ -43,17 +58,18 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     bootctrl
 
-PRODUCT_PACKAGES += \
-otapreopt_script \
-cppreopts.sh \
-update_engine \
-update_verifier \
-update_engine_sideload
-
+# Fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
-	fastbootd
+    android.hardware.fastboot@1.0-impl-mock.recovery \
+    fastbootd
 
-# OEM otacerts
-#PRODUCT_EXTRA_RECOVERY_KEYS += \
-    #$(LOCAL_PATH)/security/RMX3231
+PRODUCT_PACKAGES_DEBUG += \
+    update_engine_client
+
+PRODUCT_PACKAGES += \
+    otapreopt_script \
+    cppreopts.sh \
+    update_engine \
+    update_verifier \
+    update_engine_sideload
