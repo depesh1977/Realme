@@ -66,15 +66,31 @@ endif
 # A/B
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
+    uboot \
+    sml \
+    trustos \
+    teecfg \
     vbmeta \
     vbmeta_system \
     vbmeta_vendor \
+    vbmeta_product \
+    vbmeta_system_ext \
     dtbo \
+    l_ldsp \
+    l_gdsp \
+    l_modem \
+    l_deltanv \
+    wcnmodem \
+    gpsgl \
+    gpsbd \
+    pm_sys \
     boot \
     system \
     system_ext \
     vendor \
-    product
+    product \
+    socko \
+    odmko
 
 # Android Verified Boot
 BOARD_AVB_ENABLE := true
