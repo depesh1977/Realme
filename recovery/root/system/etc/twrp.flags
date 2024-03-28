@@ -51,7 +51,7 @@
 /socko_image            emmc     /dev/block/by-name/socko_a                 flags=backup=1;flashimg=1;display="Socko Image"
 /odmko                 	ext4     /dev/block/by-name/odmko                 	flags=backup=1;display="Odmko";slotselect
 /odmko_image            emmc     /dev/block/by-name/odmko_a                 flags=backup=1;flashimg=1;display="Odmko Image"
-/prodnv            	    ext4     /dev/block/by-name/prodnv                	flags=backup=1;display="ProdNV"
+/mnt/vendor             ext4     /dev/block/by-name/prodnv                	flags=backup=1;display="ProdNV"
 /prodnv_image           emmc     /dev/block/by-name/prodnv       		        flags=backup=1;flashimg=1;display="ProdNV Image"
 /sysdumpdb              emmc     /dev/block/by-name/sysdumpdb               flags=backup=1;display="Sysdumpdb"
 
