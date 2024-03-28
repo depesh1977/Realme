@@ -1,6 +1,4 @@
 # USB MTP
-ro.sys.usb.storage.type=adb,mtp
-ro.secure=0
-ro.adb.secure=0
-ro.debuggable=1
+#ro.sys.usb.storage.type=adb,mtp
+sys.usb.controller=musb-hdrc.0.auto
 
