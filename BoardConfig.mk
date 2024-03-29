@@ -25,6 +25,18 @@ TARGET_CPU_VARIANT_RUNTIME := cortex-a55
 TARGET_CPU_SMP := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
+AB_OTA_UPDATER := true
+AB_OTA_PARTITIONS += \
+    vbmeta \
+    vbmeta_system \
+    vbmeta_vendor \
+    dtbo \
+    boot \
+    system \
+    system_ext \
+    vendor \
+    product
+
 # Bootloader
 TARGET_NO_BOOTLOADER := true
 TARGET_USES_64_BIT_BINDER := true
