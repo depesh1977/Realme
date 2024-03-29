@@ -29,9 +29,6 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := generic
 TARGET_CPU_VARIANT_RUNTIME := cortex-a55
 
-TARGET_CPU_SMP := true
-ARCH_ARM_HAVE_TLS_REGISTER := true
-
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
     vbmeta \
@@ -48,22 +45,6 @@ AB_OTA_PARTITIONS += \
 TARGET_NO_BOOTLOADER := true
 TARGET_USES_64_BIT_BINDER := true
 TARGET_USES_UEFI := true
-
-# Platform
-TARGET_BOOTLOADER_BOARD_NAME := RMX3231
-TARGET_BOARD_PLATFORM := SC9863A
-
-# MODULES
-TARGET_RECOVERY_DEVICE_MODULES += \
-    libkeymaster4 \
-    libkeymaster41 \
-    libpuresoftkeymasterdevice
-
-# LIBRARIES
-RECOVERY_LIBRARY_SOURCE_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster41.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
 
 # Display
 TARGET_SCREEN_DENSITY := 320
@@ -94,6 +75,10 @@ TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 BOARD_INCLUDE_DTB_IN_BOOTIMG := 
 endif
+
+# Platform
+TARGET_BOOTLOADER_BOARD_NAME := RMX3231
+TARGET_BOARD_PLATFORM := SC9863A
 
 # Android Verified Boot
 BOARD_AVB_ENABLE := true
@@ -132,9 +117,6 @@ OVERRIDE_TARGET_FLATTEN_APEX := true
 # Enable CPUSets
 ENABLE_CPUSETS := true
 ENABLE_SCHEDBOOST := true
-
-# SPRD hardware
-BOARD_USES_SPRD_HARDWARE := true
 
 # Use mke2fs to create ext4 images
 TARGET_USES_MKE2FS := true
@@ -182,7 +164,6 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 190
 RECOVERY_SDCARD_ON_DATA := true
-TW_MTP_DEVICE := /dev/mtp_usb
 TW_USE_TOOLBOX := true
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_NO_USB_STORAGE := true
@@ -193,6 +174,14 @@ TW_DEVICE_VERSION := RMX3231 by depesh1977
 TW_INCLUDE_CRYPTO := false
 TW_INCLUDE_CRYPTO_FBE := false
 TW_INCLUDE_FBE_METADATA_DECRYPT := false
+
+# MTP
+TW_HAS_MTP := true
+TW_MTP_DEVICE := /dev/mtp_usb
+
+# SDCARD AND OTG
+BOARD_ROOT_EXTRA_FOLDERS += usb-otg
+BOARD_ROOT_EXTRA_FOLDERS += external_sd
 
 # Kernel module loading
 TW_LOAD_VENDOR_MODULES := "incrementalfs.ko kheaders.ko trace_irqsoff_bytedancy.ko trace_noschedule_bytedancy.ko trace_runqlat_bytedancy.ko"
