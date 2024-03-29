@@ -52,10 +52,10 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-service
 
 PRODUCT_PACKAGES += \
-    bootctrl.sp9863a
+    bootctrl.RMX3231
 
 PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.sp9863a \
+    bootctrl.RMX3231 \
     libgptutils \
     libz \
     libcutilsGES_DEBUG += \
