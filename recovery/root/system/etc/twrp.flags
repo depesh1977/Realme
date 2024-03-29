@@ -19,6 +19,13 @@
 /logo                    emmc     /dev/block/by-name/logo                      flags=display="Bootup logo";backup=1
 /fbootlogo               emmc     /dev/block/by-name/fbootlogo                 flags=display="Fastboot logo";backup=1
 
+# Images
+/system_image	    	emmc  	 /dev/block/mapper/system_a			        flags=backup=1;flashimg=1;display="System Image"
+/system_ext_image	    emmc     /dev/block/mapper/system_ext_a             flags=backup=1;flashimg=1;display="System_Ext Image"
+/vendor_image	    	emmc     /dev/block/mapper/vendor_a			        flags=backup=1;flashimg=1;display="Vendor Image"
+/product_image	    	emmc     /dev/block/mapper/product_a			    flags=backup=1;flashimg=1;display="Product Image"
+/super                  emmc     /dev/block/by-name/super                   flags=backup=1;flashimg=1;display="Super Image"
+
 # AVB
 /vbmeta                  emmc     /dev/block/by-name/vbmeta                    flags=display=vbmeta;slotselect;backup=1;flashimg=1
 /vbmeta_system           emmc     /dev/block/by-name/vbmeta_system             flags=display=vbmeta-system;slotselect;backup=1;flashimg=1
