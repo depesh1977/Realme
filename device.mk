@@ -48,18 +48,13 @@ PRODUCT_PACKAGES += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-service
+    android.hardware.boot@1.1-impl \
+    android.hardware.boot@1.1-service \
+    android.hardware.boot@1.1-impl.recovery
 
 PRODUCT_PACKAGES += \
-    bootctrl.RMX3231
-
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.RMX3231 \
-    libgptutils \
-    libz \
-    libcutilsGES_DEBUG += \
-    bootctrl
+    bootctrl.$(PRODUCT_PLATFORM) \
+    bootctrl.$(PRODUCT_PLATFORM).recovery
 
 # Fastbootd
 PRODUCT_PACKAGES += \
