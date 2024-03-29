@@ -46,6 +46,18 @@ TARGET_USES_UEFI := true
 TARGET_BOOTLOADER_BOARD_NAME := RMX3231
 TARGET_BOARD_PLATFORM := SC9863A
 
+# MODULES
+TARGET_RECOVERY_DEVICE_MODULES += \
+    libkeymaster4 \
+    libkeymaster41 \
+    libpuresoftkeymasterdevice
+
+# LIBRARIES
+RECOVERY_LIBRARY_SOURCE_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster41.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
+
 # Display
 TARGET_SCREEN_DENSITY := 320
 
