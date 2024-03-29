@@ -164,10 +164,6 @@ TW_INCLUDE_CRYPTO := false
 TW_INCLUDE_CRYPTO_FBE := false
 TW_INCLUDE_FBE_METADATA_DECRYPT := false
 
-# Fix reboot to system
-TW_NO_FASTBOOT_BOOT := true
-#GENERIC_KERNEL_CMDLINE += twrpfastboot=1
-
 # Kernel module loading
 TW_LOAD_VENDOR_MODULES := "incrementalfs.ko kheaders.ko trace_irqsoff_bytedancy.ko trace_noschedule_bytedancy.ko trace_runqlat_bytedancy.ko"
 
