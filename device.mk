@@ -46,16 +46,19 @@ PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
     android.hardware.health@2.1-service
 
+# Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.1-impl \
-    android.hardware.boot@1.1-impl.recovery \
-    android.hardware.boot@1.1-service
+    android.hardware.boot@1.0-impl \
+    android.hardware.boot@1.0-service
 
 PRODUCT_PACKAGES += \
-    bootctrl.$(PRODUCT_PLATFORM) \
-    bootctrl.$(PRODUCT_PLATFORM).recovery
+    bootctrl.sp9863a
 
-PRODUCT_PACKAGES_DEBUG += \
+PRODUCT_STATIC_BOOT_CONTROL_HAL := \
+    bootctrl.sp9863a \
+    libgptutils \
+    libz \
+    libcutilsGES_DEBUG += \
     bootctrl
 
 # Fastbootd
@@ -64,8 +67,6 @@ PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock.recovery \
     fastbootd
 
-PRODUCT_PACKAGES_DEBUG += \
-    update_engine_client
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
