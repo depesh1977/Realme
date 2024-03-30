@@ -15,7 +15,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
 # Inherit some common TWRP stuff.
-$(call inherit-product, vendor/twrp/config/common.mk)
+$(call inherit-product, vendor/pb/config/common.mk)
 
 # Inherit from RMX3231 device
 $(call inherit-product, device/realme/RMX3231/device.mk)
