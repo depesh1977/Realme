@@ -179,9 +179,6 @@ TW_MTP_DEVICE := /dev/mtp_usb
 BOARD_ROOT_EXTRA_FOLDERS += usb-otg
 BOARD_ROOT_EXTRA_FOLDERS += external_sd
 
-# Kernel module loading
-TW_LOAD_VENDOR_MODULES := "incrementalfs.ko kheaders.ko trace_irqsoff_bytedancy.ko trace_noschedule_bytedancy.ko trace_runqlat_bytedancy.ko"
-
 # Debugging
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
