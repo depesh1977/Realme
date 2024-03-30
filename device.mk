@@ -7,7 +7,7 @@
 
 LOCAL_PATH := device/realme/RMX3231
 
-PRODUCT_PLATFORM := SC9863A
+PRODUCT_PLATFORM := sp9863a
 
 # Dynamic Partitions stuff
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
