@@ -80,6 +80,9 @@ endif
 TARGET_BOOTLOADER_BOARD_NAME := RMX3231
 TARGET_BOARD_PLATFORM := sp9863a
 
+# Use mke2fs to create ext4 images
+TARGET_USES_MKE2FS := true
+
 # Android Verified Boot
 BOARD_AVB_ENABLE := true
 BOARD_AVB_VBMETA_SYSTEM := system system_ext product
@@ -154,7 +157,7 @@ TW_INCLUDE_REPACKTOOLS := true
 BOARD_USES_RECOVERY_AS_BOOT := true
 TARGET_NO_RECOVERY := true
 TW_HAS_NO_RECOVERY_PARTITION := true
-#TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 TW_BRIGHTNESS_PATH := "/sys/devices/platform/soc/soc:mm/63100000.dsi/63100000.dsi.0/display/panel0/sprd_backlight/brightness"
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TW_EXTRA_LANGUAGES := true
@@ -165,8 +168,8 @@ TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 190
 RECOVERY_SDCARD_ON_DATA := true
 TW_USE_TOOLBOX := true
-#TW_SCREEN_BLANK_ON_BOOT := true
-TW_NO_SCREEN_BLANK := true
+TW_SCREEN_BLANK_ON_BOOT := true
+#TW_NO_SCREEN_BLANK := true
 TW_NO_USB_STORAGE := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_DEVICE_VERSION := RMX3231 by depesh1977
