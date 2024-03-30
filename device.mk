@@ -23,17 +23,6 @@ ENABLE_VIRTUAL_AB := true
 
 PRODUCT_PROPERTY_OVERRIDES += ro.apex.updatable=false
 
-AB_OTA_UPDATER := true
-AB_OTA_PARTITIONS += \
-    vbmeta \
-    vbmeta_system \
-    vbmeta_vendor \
-    dtbo \
-    boot \
-    system \
-    system_ext \
-    vendor \
-    product
 
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
@@ -72,3 +61,6 @@ PRODUCT_PACKAGES += \
     update_engine \
     update_verifier \
     update_engine_sideload
+
+# Hidl Service
+PRODUCT_ENFORCE_VINTF_MANIFEST := true
