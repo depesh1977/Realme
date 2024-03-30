@@ -35,6 +35,7 @@ AB_OTA_PARTITIONS += \
     vendor \
     product
 
+# A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
     POSTINSTALL_PATH_system=system/bin/otapreopt_script \
@@ -46,17 +47,15 @@ PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
     android.hardware.health@2.1-service
 
+# Boot control HAL
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.1-impl \
-    android.hardware.boot@1.1-impl.recovery \
-    android.hardware.boot@1.1-service
+    android.hardware.boot@1.1-service \
+    android.hardware.boot@1.1-impl.recovery
 
 PRODUCT_PACKAGES += \
     bootctrl.$(PRODUCT_PLATFORM) \
     bootctrl.$(PRODUCT_PLATFORM).recovery
-
-PRODUCT_PACKAGES_DEBUG += \
-    bootctrl
 
 # Fastbootd
 PRODUCT_PACKAGES += \
@@ -64,6 +63,8 @@ PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock.recovery \
     fastbootd
 
+PRODUCT_PACKAGES_DEBUG += \
+    update_engine_client
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
