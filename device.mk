@@ -18,20 +18,37 @@ PRODUCT_TARGET_VNDK_VERSION := 30
 # API
 PRODUCT_SHIPPING_API_LEVEL := 30
 
-# A/B support
-AB_OTA_UPDATER := true
+# Virtual A/B
+ENABLE_VIRTUAL_AB := true
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
+# A/B
 AB_OTA_PARTITIONS += \
+    uboot \
+    sml \
+    trustos \
+    teecfg \
     vbmeta \
     vbmeta_system \
-    vbmeta_system_ext \
     vbmeta_vendor \
+    vbmeta_product \
+    vbmeta_system_ext \
     dtbo \
+    l_ldsp \
+    l_gdsp \
+    l_modem \
+    l_deltanv \
+    wcnmodem \
+    gpsgl \
+    gpsbd \
+    pm_sys \
     boot \
     system \
     system_ext \
     vendor \
-    product
+    product \
+    socko \
+    odmko
 
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
