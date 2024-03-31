@@ -76,5 +76,5 @@ PRODUCT_PACKAGES += \
 
 # OEM otacert
 PRODUCT_EXTRA_RECOVERY_KEYS += \
-    $(LOCAL_PATH)/security/ota
+    $(LOCAL_PATH)/security/releasekey.x509.pem
 
