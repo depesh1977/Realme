@@ -21,6 +21,18 @@ PRODUCT_SHIPPING_API_LEVEL := 30
 # A/B support
 AB_OTA_UPDATER := true
 
+AB_OTA_PARTITIONS += \
+    vbmeta \
+    vbmeta_system \
+    vbmeta_system_ext \
+    vbmeta_vendor \
+    dtbo \
+    boot \
+    system \
+    system_ext \
+    vendor \
+    product
+
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
