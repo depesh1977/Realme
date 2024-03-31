@@ -43,8 +43,11 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.1-impl.recovery
 
 PRODUCT_PACKAGES += \
-    bootctrl.$(PRODUCT_PLATFORM) \
-    bootctrl.$(PRODUCT_PLATFORM).recovery
+    bootctrl.unisoc \
+    bootctrl.unisoc.recovery
+
+PRODUCT_PACKAGES_DEBUG += \
+    bootctl
 
 # Fastbootd
 PRODUCT_PACKAGES += \
