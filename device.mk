@@ -18,11 +18,8 @@ PRODUCT_TARGET_VNDK_VERSION := 30
 # API
 PRODUCT_SHIPPING_API_LEVEL := 30
 
-# Virtual A/B
-ENABLE_VIRTUAL_AB := true
-
-PRODUCT_PROPERTY_OVERRIDES += ro.apex.updatable=false
-
+# A/B support
+AB_OTA_UPDATER := true
 
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
@@ -65,5 +62,7 @@ PRODUCT_PACKAGES += \
     update_verifier \
     update_engine_sideload
 
-# Hidl Service
-PRODUCT_ENFORCE_VINTF_MANIFEST := true
+# OEM otacert
+PRODUCT_EXTRA_RECOVERY_KEYS += \
+    $(LOCAL_PATH)/security/ota
+
