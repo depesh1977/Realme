@@ -31,6 +31,7 @@ AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
     vbmeta \
     vbmeta_system \
+    vbmeta_system_ext \
     vbmeta_vendor \
     dtbo \
     boot \
