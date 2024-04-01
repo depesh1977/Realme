@@ -54,13 +54,11 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-service
 
 PRODUCT_PACKAGES += \
-    unisoc.bootctrl
-
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
     unisoc.bootctrl \
-    libgptutils \
-    libz \
-    libcutils
+    unisoc.bootctrl.recovery
+
+PRODUCT_PACKAGES_DEBUG += \
+    bootctl
 
 # fastbootd
 PRODUCT_PACKAGES += \
