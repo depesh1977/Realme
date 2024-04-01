@@ -51,14 +51,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl \
     android.hardware.boot@1.0-impl.recovery \
-    android.hardware.boot@1.0-service
-
-PRODUCT_PACKAGES += \
-    unisoc.bootctrl \
-    unisoc.bootctrl.recovery
+    bootctl
 
 PRODUCT_PACKAGES_DEBUG += \
-    bootctl
+    bootctl.unisoc
 
 # fastbootd
 PRODUCT_PACKAGES += \
