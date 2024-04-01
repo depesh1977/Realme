@@ -145,6 +145,9 @@ PLATFORM_VERSION := 16.1.0
 BOARD_USES_METADATA_PARTITION := true
 BOARD_ROOT_EXTRA_FOLDERS += metadata
 
+# Partitions (listed in the file) to be wiped under recovery.
+TARGET_RECOVERY_WIPE := $(DEVICE_PATH)/recovery/root/system/etc/recovery.wipe
+
 # RECOVERY
 #TW_EXCLUDE_APEX := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
