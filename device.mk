@@ -54,10 +54,10 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-service
 
 PRODUCT_PACKAGES += \
-    bootctrl.sp9863a
+    bootctrl.unisoc
 
 PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.sp9863a \
+    bootctrl.unisoc \
     libgptutils \
     libz \
     libcutils
