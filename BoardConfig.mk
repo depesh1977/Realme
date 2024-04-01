@@ -73,6 +73,9 @@ TARGET_BOARD_PLATFORM := sp9863a
 # A/B
 AB_OTA_UPDATER := true
 
+# Assert
+TARGET_OTA_ASSERT_DEVICE := RMX3231
+
 # Use mke2fs to create ext4 images
 TARGET_USES_MKE2FS := true
 
