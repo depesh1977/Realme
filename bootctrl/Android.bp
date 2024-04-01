@@ -15,7 +15,7 @@
 //
 
 cc_library {
-    name: "bootctrl.sp9863a",
+    name: "bootctrl.unisoc",
     defaults: ["bootctrl_hal_defaults"],
     static_libs: ["libgptutils"],
 }
