@@ -61,10 +61,11 @@ PRODUCT_STATIC_BOOT_CONTROL_HAL := \
     libz \
     libcutils
 
-# Fastbootd
+# fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
-    fastbootd
+    fastbootd \
+    resetprop
 
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
