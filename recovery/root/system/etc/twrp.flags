@@ -1,4 +1,4 @@
-# Twrp fstab file - arturmes
+# Twrp fstab file
 # For Realme RMX3231
 
 # <mount_point>        <fstype>        <device>              <device2>                              <flags>
