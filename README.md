@@ -16,8 +16,6 @@ Display | 720 x 1600 pixels, 20:9 ratio (269 ppi density)
 Rear Camera  | 8 MP
 Front Camera | 5 MP
 
-Issues
-Let me know if you find anything
 
 Specifications in detail
 See [We look there](https://m.gsmarena.com/realme_c11_(2021)-10890.php)
