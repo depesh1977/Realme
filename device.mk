@@ -42,25 +42,27 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
-# Health Hal
+# Health HAL
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-service
+    android.hardware.health@2.0-impl \
+    android.hardware.health@2.0-service \
+    libhealthd.$(PRODUCT_PLATFORM)
 
-# Boot control HAL
+# Boot Control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-impl.recovery \
-    bootctl
+    android.hardware.boot@1.1-impl \
+    android.hardware.boot@1.1-impl.recovery \
+    android.hardware.boot@1.1-service
 
-PRODUCT_PACKAGES_DEBUG += \
-    bootctl.unisoc
-
-# fastbootd
 PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.0-impl-mock \
-    fastbootd \
-    resetprop
+    bootctrl.unisoc \
+    bootctrl.unisoc.recovery
+
+# Fastbootd
+PRODUCT_PACKAGES += \
+    android.hardware.fastboot@1.0-impl \
+    android.hardware.fastboot@1.0-impl.recovery \
+    fastbootd
 
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
