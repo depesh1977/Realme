@@ -44,8 +44,8 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Health HAL
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.0-impl-2.1 \
-    android.hardware.health@2.1-service \
+    android.hardware.health@2.0-impl \
+    android.hardware.health@2.0-service \
     libhealthd.$(PRODUCT_PLATFORM)
 
 # Boot Control HAL
@@ -60,8 +60,8 @@ PRODUCT_PACKAGES += \
 
 # Fastbootd
 PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.0-impl \
-    android.hardware.fastboot@1.0-impl.recovery \
+    android.hardware.fastboot@1.0-impl-mock \
+    android.hardware.fastboot@1.0-impl-mock.recovery \
     fastbootd
 
 PRODUCT_PACKAGES_DEBUG += \
