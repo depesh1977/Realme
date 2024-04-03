@@ -39,6 +39,19 @@ TARGET_SCREEN_DENSITY := 320
 # SPRD hardware
 BOARD_USES_SPRD_HARDWARE := true
 
+# A/B
+AB_OTA_UPDATER := true
+AB_OTA_PARTITIONS += \
+    system \
+    vendor \
+    system_ext \
+    product \
+    boot \
+    dtbo \
+    vbmeta \
+    vbmeta_system \
+    vbmeta_vendor
+
 # Kernel
 TARGET_KERNEL_ARCH := arm64
 BOARD_BOOTIMG_HEADER_VERSION := 2
@@ -100,6 +113,7 @@ BOARD_AVB_BOOT_ROLLBACK_INDEX_LOCATION := 1
 BOARD_SUPER_PARTITION_SIZE := 9126805504
 TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_VENDOR := vendor
+TARGET_COPY_OUT_SYSTEM = system
 TARGET_COPY_OUT_SYSTEM_EXT = system_ext
 BOARD_SUPER_PARTITION_GROUPS := realme_dynamic_partitions
 BOARD_REALME_DYNAMIC_PARTITION_LIST := system system_ext vendor product
