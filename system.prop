@@ -1,4 +1,5 @@
 # USB MTP
-#ro.sys.usb.storage.type=adb,mtp
+ro.hardware=RMX3231
+ro.sys.usb.storage.type=adb,mtp
 sys.usb.controller=musb-hdrc.0.auto
 
