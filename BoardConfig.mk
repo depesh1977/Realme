@@ -188,6 +188,7 @@ TW_SCREEN_BLANK_ON_BOOT := true
 TW_NO_USB_STORAGE := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_HAS_EDL_MODE := true
+TW_INCLUDE_LPTOOLS := true
 TW_DEVICE_VERSION := RMX3231 by depesh1977
 
 # Decryption
@@ -200,8 +201,10 @@ TW_NO_FASTBOOT_BOOT := true
 
 # MTP
 TW_MTP_DEVICE := /dev/mtp_usb
+TW_HAS_MTP := true
 
 # Debugging
+TWRP_EVENT_LOGGING := true
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
