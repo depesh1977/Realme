@@ -18,4 +18,4 @@ Front Camera | 5 MP
 
 
 Specifications in detail
-See [We look there](https://m.gsmarena.com/realme_c11_(2021)-10890.php)
+See [We look there](https://m.gsmarena.com/realme_c21y-10999.php)
