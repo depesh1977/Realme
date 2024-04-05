@@ -191,6 +191,10 @@ TW_HAS_EDL_MODE := true
 TW_INCLUDE_LPTOOLS := true
 TW_DEVICE_VERSION := RMX3231 by depesh1977
 
+# Vibrator
+TW_HAPTICS_TSPDRV := true
+TW_SUPPORT_INPUT_1_2_HAPTICS := true
+
 # Decryption
 TW_INCLUDE_CRYPTO := false
 TW_INCLUDE_CRYPTO_FBE := false
