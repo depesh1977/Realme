@@ -180,8 +180,8 @@ TW_EXTRA_LANGUAGES := true
 TW_DEFAULT_LANGUAGE := ru
 TW_THEME := portrait_hdpi
 TW_INPUT_BLACKLIST := "hbtp_vm"
-TW_MAX_BRIGHTNESS := 255
-TW_DEFAULT_BRIGHTNESS := 190
+#TW_MAX_BRIGHTNESS := 255
+#TW_DEFAULT_BRIGHTNESS := 190
 RECOVERY_SDCARD_ON_DATA := true
 TW_USE_TOOLBOX := true
 TW_SCREEN_BLANK_ON_BOOT := true
@@ -192,8 +192,8 @@ TW_INCLUDE_LPTOOLS := true
 TW_DEVICE_VERSION := RMX3231 by depesh1977
 
 # Vibrator
-TW_HAPTICS_TSPDRV := true
-TW_SUPPORT_INPUT_1_2_HAPTICS := true
+#TW_HAPTICS_TSPDRV := true
+#TW_SUPPORT_INPUT_1_2_HAPTICS := true
 
 # Decryption
 TW_INCLUDE_CRYPTO := false
@@ -201,7 +201,7 @@ TW_INCLUDE_CRYPTO_FBE := false
 TW_INCLUDE_FBE_METADATA_DECRYPT := false
 
 # Fix fastboot reboot
-TW_NO_FASTBOOT_BOOT := true
+#TW_NO_FASTBOOT_BOOT := true
 
 # MTP
 TW_MTP_DEVICE := /dev/mtp_usb
@@ -213,5 +213,5 @@ TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
 # Kernel module loading
-TW_LOAD_VENDOR_MODULES := "incrementalfs.ko kheaders.ko"
+#TW_LOAD_VENDOR_MODULES := "incrementalfs.ko kheaders.ko"
 
