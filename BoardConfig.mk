@@ -194,7 +194,7 @@ TW_INCLUDE_CRYPTO_FBE := false
 TW_INCLUDE_FBE_METADATA_DECRYPT := false
 
 # Fix fastboot reboot
-#TW_NO_FASTBOOT_BOOT := true
+TW_NO_FASTBOOT_BOOT := true
 
 # MTP
 TW_MTP_DEVICE := /dev/mtp_usb
